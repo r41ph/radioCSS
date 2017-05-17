@@ -1,0 +1,249 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Google Fonts
+// font-family: 'Orbitron', sans-serif;
+// font-family: 'Open Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Orbitron');
+
+// radio
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.main-wrapper {
+    display: inline-block;
+}
+
+#radio-wrapper {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-60%);
+
+  img {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+
+  .buttons {
+    position: absolute;
+    top: 210px;
+    right: 102px;
+    z-index: 99;
+    width: 290px;
+
+    li {
+      display: inline-block;
+    }
+  }
+
+}
+
+.buttons {
+  .radio-button {
+    position: relative;
+    width:40px;
+    height:15px;
+    text-align:center;
+    color:#FFF;
+    text-decoration:none;
+    display: block;
+    margin: 10px 5px;
+
+    &:after {
+        font-size: 10px;
+        margin-top: -17px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        color: #000;
+        text-transform: uppercase;
+    }
+    &:before {
+      background:#9f8d7f;
+      background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#9f8d7f), to(#948070));
+      
+      border-radius:5px;
+      
+      box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF;
+      
+      position: absolute;
+      content: "";
+      left: -2px;
+      right: -3px;
+      top: -4px;
+      bottom: -5px;
+      z-index: -1;
+    }
+    &:active {
+      // box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset;
+        box-shadow: 0 1px 9px rgba(255,255,255,.5) inset, 0 -1px 0 rgba(255,255,255,.1) inset, 1px 0px 0 #695a4f, 1px 1px 3px rgba(0,0,0,.5);
+        // top:5px;
+        // right: 1px;
+    }
+    &:active:before{
+      // top: -11px;
+      // bottom: -5px;
+      content: "";
+    }
+
+    // Radio button color
+    &.radio-button--color {
+      text-shadow:-1px -1px 0 #a9998a;
+      background: #a9998a;
+      border:1px solid #695a4f;
+      background-image:linear-gradient(to bottom, #a9998a, #9f8d7f);
+      border-radius:5px;
+      box-shadow: 0 1px 6px rgba(255,255,255,.5) inset, 0 -1px 0 rgba(255,255,255,.1) inset, 1px 0px 0 #695a4f, 1px 1px 2px rgba(0,0,0,.5);
+
+      &:hover {
+        background: #9f8d7f;
+        background-image:linear-gradient(to top, #948071, #9f8d7f);
+        cursor: pointer;
+      }
+    }
+
+    // Radio buttons
+    &.radio-button--on-off {
+       &:after {
+          content: "on/off";
+       }
+    }
+    &.radio-button--snooze {
+       &:after {
+          content: "snooze";
+       }
+    }
+    &.radio-button--alarm {
+       &:after {
+          content: "alarm";
+       }
+    }
+    &.radio-button--volume {
+      top: -14px;
+      line-height: 10px;
+      color: #000;
+      &:after {
+          content: "volume";
+          left: 70%;
+          transform: translateX(0);
+      }
+    }
+    &.radio-button--volume-up {
+      top: -13px;
+      line-height: 12px;
+      color: #000;
+    }
+    &.radio-button--scan {
+       &:after {
+          content: "scan";
+       }
+    }
+    &.radio-button--prev {
+       &:after {
+          content: "prev";
+       }
+    }
+    &.radio-button--next {
+       &:after {
+          content: "next";
+       }
+    }
+  }
+}
+
+
+.digits-screen {
+  .radio--on {
+    display: none;
+    position: absolute;
+    top: 100px;
+    right: 130px;
+    z-index: 99;
+    width: 200px;
+
+    &.active {
+      display: block;
+    }
+
+    #time {
+      color: #d34500;
+      font-size: 2em;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+  }
+  .radio--off {
+    display: none;
+    position: absolute;
+    top: 116px;
+    right: 106px;
+    z-index: 99;
+    width: 200px;
+
+    &.active {
+      opacity: 0;
+      display: block;
+      animation-name: radioOff;
+      animation-duration: 4s;
+    }
+
+    span {
+      color: #d34500;
+      font-size: 1.6em;
+      font-family: 'Orbitron', sans-serif;
+    }
+  }
+}
+
+@keyframes radioOff {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

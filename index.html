@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Radio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="radio.js"></script>
+</head>
+<body>
+  <div class="main-wrapper">
+    <div id="radio-wrapper">
+      <ul class="buttons">
+        <li class="radio-button radio-button--color radio-button--on-off"></li>
+        <li class="radio-button radio-button--color radio-button--snooze"></li>
+        <li class="radio-button radio-button--color radio-button--alarm"></li>
+        <li class="radio-button radio-button--color radio-button--volume radio-button--volume-down">-</li>
+        <li class="radio-button radio-button--color radio-button--volume-up">+</li>
+        <li class="radio-button radio-button--color radio-button--scan"></li>
+        <li class="radio-button radio-button--color radio-button--prev"></li>
+        <li class="radio-button radio-button--color radio-button--next"></li>
+      </ul>
+      <div class="digits-screen">
+        <div class="radio--on active">
+          <time id="time"></time>
+        </div>
+        <div class="radio--off">
+          <span>Goodbye</span>
+        </div>
+      </div>
+      <img src="img/digital-radio-no-buttons.png" alt="Digital radio image">
+    </div>
+  </div>
+</body>
+</html>
