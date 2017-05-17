@@ -1,9 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+  var tune = document.querySelector(`audio`);
+  // Alarm clock
+
   function setTime() {
     const now = new Date().toLocaleTimeString('en-GB', { /* weekday: "short", */ hour: "numeric", minute: "numeric", second: "numeric"});
     document.getElementById("time").innerHTML = now;
   }
+
+  setInterval(setTime, 1000);
+  setTime();
+  
+  // Radio ON/OFF
   function radioOnOff() {
     var isRadioOn = document.querySelector(`div.radio--on`);
     var isRadioOff = document.querySelector(`div.radio--off`);
@@ -11,57 +19,42 @@ document.addEventListener("DOMContentLoaded", function() {
     if ( isRadioOn.classList.contains('active') ) {
       isRadioOn.classList.remove('active');
       isRadioOff.classList.add('active');
+      tune.pause();
     } else {
       isRadioOn.classList.add('active');
       isRadioOff.classList.remove('active');
+      playAudio();
+    }
+  }
+  var buttonOnOff = document.querySelector(`li.radio-button--on-off`);
+  buttonOnOff.addEventListener("click", radioOnOff);
+
+  // Volume control
+  var volumeUp = document.querySelector(`li.radio-button--volume-up`);
+  var volumeDown = document.querySelector(`li.radio-button--volume-down`);
+
+  volumeDown.addEventListener("click", turnDownVolume);
+  volumeUp.addEventListener("click", turnUpVolume);
+
+  function turnUpVolume() {
+    if(tune.volume < 1.0) {
+      tune.volume = tune.volume + 0.1;
+      console.log("volume Up: " + tune.volume);
     }
   }
 
+  function turnDownVolume() {
+    if (tune.volume >= 0.2) {
+      tune.volume = tune.volume - 0.1;
+      console.log("volume Down: " + tune.volume);
+    } 
+  }
 
 
-
-  setInterval(setTime, 1000);
-  setTime();
-
-  var buttonOnOff = document.querySelector(`li.radio-button--on-off`);
-
-  buttonOnOff.addEventListener("click", radioOnOff);
-
-
-
-
-
-
-  // function removeTransition(e) {
-  //   if (e.propertyName !== 'box-shadow') return;
-  //   e.target.classList.remove('key-pressed');
-  // }
-
-  // function keyPlaying(e) {
-  //     var keyCod, key, sounds;
-
-  //     if( e.keyCode === undefined ) {
-  //       keyCode = e.target.getAttribute("data-key");
-  //       key = document.querySelector(`li[data-key="${keyCode}"]`);
-  //       sounds = document.querySelector(`audio[data-key="${keyCode}"]`);
-  //     } else {
-  //       key = document.querySelector(`li[data-key="${e.keyCode}"]`);
-  //       sounds = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-  //     }
-
-  //     if (!sounds) return;
-  //     sounds.currentTime = 0;
-  //     sounds.play();
-  //     key.classList.add('key-pressed');
-  // }
-
-
-  // var keys = Array.from(document.querySelectorAll('.key'));
-
-  // keys.forEach(function(element) {
-  //     element.addEventListener("click", keyPlaying);
-  //     element.addEventListener('transitionend', removeTransition);
-  // });
-
-  // window.addEventListener('keydown', keyPlaying);
+  // Play audio
+  function playAudio() {
+    if (!tune) return;
+      tune.currentTime = 0;
+      tune.play();
+  }
 });
